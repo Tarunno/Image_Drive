@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+
+/* -- Basic --- */
+*{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+body{
+	font-family: 'Montserrat Alternates', sans-serif;
+	background: #dbdbdb;
+}
+
+/* -- Misc -- */
+button{
+	background-color: #111;
+	border: none;
+	padding: 10px;
+	color: #f4f4f4;
+	margin-top: 5px;
+	cursor: pointer;
+}
+.logout-btn{
+	display: inline;
+	position: fixed;
+	top: 10px;
+	right: 15px;
+	height: 35px;
+	width: 60px;
+}
+.profile-btn{
+	display: inline;
+	position: fixed;
+	top: 10px;
+	right: 85px;
+	height: 35px;
+	width: 60px;
+}
+.connection-error{
+	color: crimson;
+	font-weight: bold;
+}
+
+/* -- Showcase -- */
+.showcase{
+	width: 100%;
+	height: 50vh;
+	background: url('https://images.pexels.com/photos/6663/desk-white-black-header.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
+	no-repeat center center/cover;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+/* -- Signin and Singup -- */
+.signin-signup-section{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	gap: 20px;
+}
+.signin-signup-section .forms-section{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+.signin-signup-section form{
+	height: 250px;
+	width: 300px;
+}
+.signin-signup-section fieldset{
+	height: 100%;
+	width: 100%;
+	padding: 20px;
+}
+.signin-signup-section input{
+	width: 100%;
+	height: 31px;
+	margin-bottom: 5px;
+	border: none;
+	padding: 5px;
+}
+.signin-signup-section input:focus{
+	outline: none;
+}
+.signin-signup-section .varification_code{
+	display: none;
+}
+
+
+/* -- Profile -- */
+.profile .profile-info{
+	display: flex;
+	height: 50vh;
+}
+img{
+	width: 100%;
+	height: auto;
+}
+.profile-info .image{
+	flex: 1;
+	height: 100%;
+}
+.profile-info .info{
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #111;
+	color: #f4f4f4;
+}
+.info-inner h3{
+	display: inline;
+}
+.info-inner h5{
+	display: inline;
+}
+
+/* -- Edit buttons -- */
+#change-name-btn{
+	cursor: pointer;
+}
+#change-image-btn{
+	font-size: 30px;
+	padding: 5px;
+	border-radius: 2px;
+	float: right;
+	margin: 10px;
+	cursor: pointer;
+	filter: invert(50%);
+}
+
+/* -- Pop up window for updating pro pic and full name -- */
+.pop-up-window{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 10;
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
+}
+.pop-up{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 100;
+	padding: 20px;
+	background-color: #dbdbdb;
+	width: 300px;
+	height: 200px;
+	border-radius: 4px;
+}
+.pop-up input{
+	width: 100%;
+	height: 31px;
+	margin-bottom: 5px;
+	border: none;
+	padding: 5px;
+}
+.pop-up input:focus{
+	outline: none;
+}
