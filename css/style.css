@@ -11,6 +11,15 @@ body{
 	background: #dbdbdb;
 }
 
+/* -- scrollbar -- */
+::-webkit-scrollbar{
+	width: 10px;
+}
+::-webkit-scrollbar-thumb{
+	background-color: gray;
+	border-radius: 10px;
+}
+
 /* -- Misc -- */
 button{
 	background-color: #111;
@@ -167,4 +176,81 @@ img{
 }
 .pop-up input:focus{
 	outline: none;
+}
+
+/* -- My photos -- */
+.my-timeline{
+	min-height: 10vh;
+	background-color: #dbdbdb;
+	display: flex;
+	flex-direction: column;
+}
+.my-timeline .upload-section{
+	width: 24%;
+	height: calc(min(400px, 17vw + 100px));
+	position: absolute;
+	top: 109vh;
+	left: 10px;
+	border: 3px dotted gray;
+	color: gray;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.my-timeline h1{
+	padding: 10px;
+	text-align: center;
+}
+.my-timeline .photos{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 10px;
+	padding: 10px;
+}
+.my-timeline .photo{
+	background-color: red;
+	width: 100%;
+	height: calc(min(400px, 17vw + 100px));
+}
+.my-timeline .photo:first-child{
+	background-color: #dbdbdb;
+}
+
+/* -- multiple image upload section -- */
+.image-upload-error{
+	text-align: center;
+	color: crimson;
+	font-weight: bold;
+}
+
+/* -- photos -- */
+#delete-photo-btn{
+	width: 100px;
+	background-color: crimson;
+	font-size: 15px;
+	margin: 10px;
+}
+#view-photo-btn{
+	width: 100px;
+	background-color: #f4f4f4;
+	font-size: 15px;
+	color: #111;
+	margin: 10px;
+}
+.photo-overlay{
+	height: 100%;
+	width: 100%;
+	background-color: #111;
+	clip-path: circle(0px at 0% 0%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	transition: 1s;
+	opacity: .5;
+}
+.my-timeline .photo:hover .photo-overlay{
+	clip-path: circle(1000px at 0% 0%);
+	opacity: 1;
 }
