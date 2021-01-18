@@ -5,7 +5,7 @@ class Curd{
 	private $dbusername = "root";
 	private $dbpassword = "";
 	private $dbname = "test";
-    protected $conn;
+    	protected $conn;
 
 	// Creating connection on class call
 	function __construct(){
@@ -76,14 +76,26 @@ class Curd{
                 } else {
                     $sql .= ", $key=?";
                 }
+				$i++;
             }
             return $this->stmt_execute($sql, $conditions);
         }
     }
 
 	// CURD | delete
-    function delete($table, $id){
-        $sql = "DELETE FROM $table WHERE id=?";
-        $this->stmt_execute($sql, ["id" => $id]);
+    function delete($table, $conditions = []){
+		if(sizeof($conditions) > 0){
+			$sql = "DELETE FROM $table WHERE ";
+			$i = 0;
+			foreach ($conditions as $key => $value) {
+				if($i == 0){
+					$sql .= "$key=?";
+				} else {
+					$sql .= " AND $key=?";
+				}
+				$i++;
+			}
+	        $this->stmt_execute($sql, $conditions);
+		}
     }
 }
