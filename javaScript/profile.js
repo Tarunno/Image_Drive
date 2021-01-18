@@ -9,7 +9,7 @@ class Profile{
 		},
 		this.images = []
 	}
-	
+
 	// fetching user information
 	async getInfo(){
 		var url = "includes/index.inc.php?user_info"
@@ -46,6 +46,12 @@ class Profile{
 			return data
 		}
 	}
+	async deletePhoto(image){
+		var url = "includes/index.inc.php?delete-photo=" + image
+		var res = await fetch(url)
+		var data = await res.json()
+		console.log(data)
+	}
 }
 
 profileInfo()
@@ -68,6 +74,29 @@ async function profileInfo(){
 		image: user_info.profile_image
 	}
 	user.images = user_info.images
+
+	if(user.images != null){
+		var view = document.querySelector(".photos")
+		for(var image of user.images){
+			view.innerHTML += `
+			<div class="photo" style="background: url(${"upload_images/" + image}) no-repeat center center/cover">
+				<div class="photo-overlay">
+					<button id="view-photo-btn" data-image=${image}> View </button>
+					<button id="delete-photo-btn" data-image=${image}> Delete </button>
+				</div>
+			</div>
+			`
+		}
+	}
+
+	var deletePhotoBtn = document.querySelectorAll("#delete-photo-btn")
+	deletePhotoBtn.forEach((item, i) => {
+		item.addEventListener("click", function(e){
+			item.parentNode.parentNode.style.display = "none"
+			user.deletePhoto(item.dataset.image)
+		})
+	})
+
 
 	if(user.user.image == null){
 		image_section.style.background = `url('https://st2.depositphotos.com/1006318/5909/v/600/depositphotos_59094701-stock-illustration-businessman-profile-icon.jpg') no-repeat center center/cover`
