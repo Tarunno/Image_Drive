@@ -77,13 +77,20 @@
 				$profile_info = $this->read("profile", ["user_id" => $id]);
 				$profile_info = $profile_info->fetch_assoc();
 
+				$images = $this->read("photos", ["user_id" => $_SESSION["id"]]);
+				$images_array = [];
+
+				while($row = $images->fetch_assoc()){
+					array_push($images_array, $row["photo"]);
+				}
+
 				$data = [
 					"username" => $user_info["username"],
 					"email" => $user_info["email"],
 					"first_name" => $profile_info["first_name"],
 					"last_name" => $profile_info["last_name"],
 					"profile_image" => $profile_info["image"],
-					"images" => ["image1.jpg", "image2.jpg"]
+					"images" => $images_array
 				];
 				return $data;
 			} else {
@@ -150,5 +157,57 @@
 		// Deleting user profile
 		function deleteProfile(){
 
+		}
+
+		// Upload image
+		function uploadImage($id, $token, $data){
+			if($this->authentication($id, $token)){
+				$return_data = [];
+				foreach ($data as $file) {
+					$name = $file["name"];
+					$tmp_name = $file["tmp_name"];
+					$size = $file["size"];
+					$type = $file["type"];
+					$error = $file["error"];
+
+					$type = explode(".", $name)[1];
+					$name = explode(".", $name)[0];
+					$name = str_replace(" ", "-", $name);
+					$type = strtolower($type);
+
+					$allowed = ["jpg", "png", "jpeg"];
+					if(in_array($type, $allowed)){
+						if($size > 10000000){
+							return ["error" => "Image size should be less then 5 mb"];
+						} else {
+							if($error != 0){
+								return ["error" => "Unknown error occured"];
+							} else {
+								$randomstr = uniqid($name);
+								$full_name = "image" . $randomstr . "." . $type;
+								$direction = "../upload_images/" . $full_name;
+								move_uploaded_file($tmp_name, $direction);
+								$this->create("photos", ["user_id" => $_SESSION["id"], "photo" => $full_name]);
+								array_push($return_data, $full_name);
+							}
+						}
+					} else {
+						return ["error" => "Image type should be JPG/PNG/JPEG"];
+					}
+				}
+				return $return_data;
+			} else {
+				return ["error" => "Authentication error!"];
+			}
+		}
+
+		// Delete photos
+		function deletePhoto($id, $token, $data){
+			if($this->authentication($id, $token)){
+				$this->delete("photos", ["user_id" => $_SESSION["id"], "photo" => $data]);
+				return ["user_id" => $_SESSION["id"], "photo" => $data];
+			} else {
+				return ["error" => "Authentication error!"];
+			}
 		}
 	}
