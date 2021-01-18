@@ -72,3 +72,20 @@
 		$data = $user->updateProfile($_SESSION["id"], "update-image", $_SESSION["token"]);
 		print_r(json_encode($data));
 	}
+
+	// Upload photos
+	if(isset($_POST["image-upload"])){
+		$data = [];
+		foreach ($_FILES as $file) {
+			array_push($data, $file);
+		}
+		$data = $user->uploadImage($_SESSION["id"], $_SESSION["token"], $data);
+		print_r(json_encode($data));
+	}
+
+	// Delete photos
+	if(isset($_GET["delete-photo"])){
+		$image = $_GET["delete-photo"];
+		$res = $user->deletePhoto($_SESSION["id"], $_SESSION["token"], $image);
+		print_r(json_encode($res));
+	}
