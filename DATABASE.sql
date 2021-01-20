@@ -42,7 +42,6 @@ INSERT INTO `photos` (`id`, `user_id`, `photo`, `uploaded_at`) VALUES
 (16, 10, 'imagepexels-ovan-576906005912fd258b.jpg', '2021-01-18 13:46:23'),
 (20, 10, 'image128121366_3384791791642731_1735104484907745604_o600598a1a26ad.jpg', '2021-01-18 14:18:09'),
 (22, 10, 'imageforest-mountains-fog-clouds-97546005aae324a49.jpg', '2021-01-18 15:36:03'),
-(23, 10, 'imagepexels-adrianna-calvo-3925866005aae35f229.jpg', '2021-01-18 15:36:03'),
 (24, 10, 'imagepexels-photo-15610206005aaf21abdd.jpeg', '2021-01-18 15:36:18'),
 (25, 10, 'image127016196_747845269147344_7906298144738071190_o6005ab02a2cec.jpg', '2021-01-18 15:36:34'),
 (26, 10, 'imagedolly6005ab1706990.jpeg', '2021-01-18 15:36:55');
