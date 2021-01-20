@@ -40,9 +40,21 @@
 				</div>
 			</div>
 		</div>
+        <div class="my-timeline">
+            <h1>My photos</h1>
+            <div class="upload-section">
+                <h3>Drag and Drop</h3>
+            </div>
+            <div class="photos">
+                <div class="photo">
+                    <!-- drag and drop section overlay -->
+                </div>
+            </div>
+        </div>
 
 		<!-- Scripts -->
 		<script type="text/javascript" src="javaScript/app.js"></script>
 		<script type="text/javascript" src="javaScript/profile.js"></script>
+        <script type="text/javascript" src="javaScript/dragDrop.js"></script>
 	</body>
 </html>
